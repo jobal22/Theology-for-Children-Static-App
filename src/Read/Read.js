@@ -29,7 +29,7 @@ export default class Read extends Component {
     const chapter = findChaptersinBook (chapters, bookId) || {}
     // const cha = chapters.filter(c=> bookId === c.bookId)
     const todo = "Yo I am a servant you hear me a servant! I ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ateI ate I ate servant."
-    const verseContent = verses.map(v=> v.content)
+    const verseContent = verses.map(v=> v.name + ' ' + v.content)
     const verseName = verses.map(v=> v.name)
     const replacedText = reactStringReplace(verseContent, 'servant', (match, i) => (
       <button className="btn" onClick={this.togglePop}>{match}</button>

@@ -20,15 +20,28 @@ export default class DRPages extends Component {
     const readingPlanId = this.props.match.params.planId;
     const plan = findPlan (readingPlans, readingPlanId) || {};
     const planVerses = plan.verses.map(verse=> verses[verse]);
-    // const tryThis = planVerses.map(v=> <p key={v.id}>{v.content}</p>)
-    const info = planVerses.map(v=> <ol><li key={v.id}>{v.name}{' '}{reactStringReplace(v.content, 'servant', (match, i) => (
+    // const text = 'servant servant servant'
+    // const content = planVerses.map(v=> v.content);
+    const content = planVerses.map(v=> v.name + ' ' + v.content)
+    const replacedText = reactStringReplace(content, 'servant', (match, i) => (
       <button className="btn" onClick={this.togglePop}>{match}</button>
-    ))}</li></ol>)
+    ));
+    const replacedText1 = reactStringReplace(replacedText, 'apostle', (match, i) => (
+      <button className="btn" onClick={this.togglePop}>{match}</button>
+    ));
+    const replacedText2 = reactStringReplace(replacedText1, 'faith', (match, i) => (
+      <button className="btn" onClick={this.togglePop}>{match}</button>
+    ));
+    // const lists = replacedText2.map(l=> <ol><li>{l}</li></ol>)
+
+    // const tryThis = planVerses.map(v=> <p key={v.id}>{v.content}</p>)
+    // const info = planVerses.map(v=> <ol><li key={v.id}>{v.name}{' '}{replacedText2}</li></ol>)
     // const replacedText = reactStringReplace({v.conent}, 'servant', (match, i) => (
     //   <button className="btn" onClick={this.togglePop}>{match}</button>
     // ));
 
-    console.log('right now', info)
+
+    console.log('right now', replacedText2)
 
     return (
       <div>
@@ -43,7 +56,7 @@ export default class DRPages extends Component {
             </ol>)}
         </section> */}
         <section>
-          {info}
+          {replacedText2}
           {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
         </section>
       </div>
